@@ -102,9 +102,14 @@ tasks:
     ref: main
     dest: ./resources/[core]/cron
 
-  - action: download_github
-    src: https://github.com/esx-overextended/es_extended
-    ref: main
+  - action: download_file
+    path: ./tmp/es_extended.zip
+    url: https://codeload.github.com/esx-overextended/es_extended/zip/refs/heads/main
+  - action: unzip
+    src: ./tmp/es_extended.zip
+    dest: ./tmp/es_extended
+  - action: move_path
+    src: ./tmp/es_extended/es_extended-main
     dest: ./resources/[core]/es_extended
   - action: query_database
     file: ./resources/[core]/es_extended/esx-overextended.sql
